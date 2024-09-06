@@ -17,12 +17,10 @@ const createSurvey = async (req, res) => {
         if (!hoursSlept) {
             throw new Error('hoursSlept is required');
         }
-        console.log(req.headers)
         if(!req.headers.userid)
         {
             throw new Error('Invalid User Present')
         }
-
         const surveyResponse =  await sleepPatternService.createSleepSurvey(req.headers.userid ,  { timeElapsed, sleptAt, wokeUpAt, hoursSlept } );
         res.status(200).json(surveyResponse);
     } catch (e) {
